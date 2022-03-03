@@ -14,3 +14,9 @@ return $var;
 # New comment test.
 
 $legit = 'hello world';
+
+/**
+ * Test new comment.
+ *
+ * @since 2.2.2
+ */
