@@ -20,3 +20,6 @@ $legit = 'hello world';
  *
  * @since 2.2.2
  */
+
+// More comment
+# And core comment.
