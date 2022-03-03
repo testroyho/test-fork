@@ -12,3 +12,5 @@ return $var;
  */
 
 # New comment test.
+
+$legit = 'hello world';
