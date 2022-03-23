@@ -13,6 +13,8 @@ return $var;
 
 # New comment test.
 
+$legit = 'hello world2';
+
 /**
  * Test new comment.
  *
