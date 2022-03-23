@@ -30,3 +30,7 @@ $legit = 'hello world2';
 /**
  * more
  */
+
+if ( true ) {
+echo 'yes';
+}
