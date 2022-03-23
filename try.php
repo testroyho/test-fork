@@ -32,5 +32,5 @@ $legit = 'hello world2';
  */
 
 if ( true ) {
-
+echo 'now';
 }
