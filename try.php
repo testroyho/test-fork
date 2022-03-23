@@ -23,3 +23,10 @@ $legit = 'hello world2';
 
 // More comment
 # And core comment.
+# add more comment
+/*
+* more comment
+*/
+/**
+ * more
+ */
