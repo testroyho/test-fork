@@ -32,5 +32,7 @@ $legit = 'hello world2';
  */
 
 if ( true ) {
+echo 'more change';
+echo 'here too';
 echo 'now'; // comment
 }
