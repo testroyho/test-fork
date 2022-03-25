@@ -28,5 +28,13 @@ jobs:
               2. Click on '....'\n\
               3. Scroll down to '....'\n\
               4. See error\n\n\
-              **Screenshots**"
+              **Screenshots**\n\n\
+              If applicable, add screenshots to help explain your problem.\n\n\
+              **Expected behavior**\n\n\
+              A clear and concise description of what you expected to happen.\n\n\
+              **Isolating the problem (mark completed items with an [x]):**\n\n\
+              - [ ] I have deactivated other plugins and confirmed this bug occurs when only WooCommerce plugin is active.\n\
+              - [ ] This bug happens with a default WordPress theme active, or [Storefront](https://woocommerce.com/storefront/).\n\
+              - [ ] I can reproduce this bug consistently using the steps above.\n\n\
+              **WordPress Environment**"
             }) 
