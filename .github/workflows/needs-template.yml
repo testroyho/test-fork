@@ -21,5 +21,12 @@ jobs:
               body: "Hi @${{ github.event.issue.user.login }},\n\n\
               Thank you for submitting the issue. However, you didn't fill out the details of the bug report template that we ask for. Without these details, we can't fully evaluate this issue. Please provide us with the information requested so we could take a look further.\n\n\
               **Describe the bug**\n\n\
-              A clear and concise description of what the bug is. Please be as descriptive as possible; issues lacking detail, or for any other reason than to report a bug, may be closed without action."
+              A clear and concise description of what the bug is. Please be as descriptive as possible; issues lacking detail, or for any other reason than to report a bug, may be closed without action.\n\n\
+              **To Reproduce**\n\n\
+              Steps to reproduce the behavior:\n\n\
+              1. Go to '...'\n\
+              2. Click on '....'\n\
+              3. Scroll down to '....'\n\
+              4. See error\n\n\
+              **Screenshots**"
             }) 
