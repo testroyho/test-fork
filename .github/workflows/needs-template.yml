@@ -37,9 +37,7 @@ jobs:
               - [ ] This bug happens with a default WordPress theme active, or [Storefront](https://woocommerce.com/storefront/).\n\
               - [ ] I can reproduce this bug consistently using the steps above.\n\n\
               **WordPress Environment**\n\n\
-              <details>
               ```\n\
               Copy and paste the system status report from **WooCommerce > System Status** in WordPress admin.\n\
-              ```
-              </details>"
+              ```"
             }) 
