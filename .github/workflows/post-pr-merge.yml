@@ -17,6 +17,7 @@ jobs:
             curl \
             --silent \
             --fail \
+             --header 'Authorization: bearer ${{ secrets.GITHUB_TOKEN }}' \
             --header 'User-Agent: GitHub action to set the milestone for a pull request' \
             --header 'Accept: application/vnd.github.v3.raw' \
             --output $script \
