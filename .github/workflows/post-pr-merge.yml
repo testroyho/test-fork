@@ -9,7 +9,7 @@ jobs:
     if: |
       contains(github.event.pull_request.labels.*.name, 'plugin: woocommerce') &&
       github.event.pull_request.merged == true &&
-      github.event.pull_request.base == main
+      github.event.pull_request.base == 'main'
     runs-on: ubuntu-latest
     steps:
       - name: "Get the action scripts"
