@@ -6,7 +6,10 @@ on:
 jobs:
   process-pull-request-after-merge:
     name: "Process a pull request after it's merged"
-    if: github.event.pull_request.merged == true && github.event.pull_request.base == main && "contains(github.event.pull_request.labels.*.name, 'plugin: woocommerce')"
+    if: |
+      "contains(github.event.pull_request.labels.*.name, 'plugin: woocommerce')" &&
+      github.event.pull_request.merged == true &&
+      github.event.pull_request.base == main
     runs-on: ubuntu-latest
     steps:
       - name: "Get the action scripts"
