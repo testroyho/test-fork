@@ -34,3 +34,4 @@ jobs:
         run: php post-pr-merge.php
         env:
           PULL_REQUEST_ID: ${{ github.event.pull_request.node_id }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
