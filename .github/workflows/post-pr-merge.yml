@@ -6,7 +6,6 @@ on:
 jobs:
   process-pull-request-after-merge:
     name: "Process a pull request after it's merged"
-    run: echo github.event.pull_request.base
     if: |
       contains(github.event.pull_request.labels.*.name, 'plugin: woocommerce') &&
       github.event.pull_request.merged == true &&
