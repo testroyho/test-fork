@@ -1,6 +1,6 @@
 <?php
 // Comment here.
-$var = '123';
+$var = '123s';
 
 return $var;
 
