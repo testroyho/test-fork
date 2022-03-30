@@ -1,6 +1,6 @@
 <?php
 // Comment here.
-$var = '12345';
+$var = '123';
 
 return $var;
 
