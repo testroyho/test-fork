@@ -1,6 +1,6 @@
 <?php
 // Comment here.
-$var = '123s233243423423423sss';
+$var = 'ass';
 
 return $var;
 
