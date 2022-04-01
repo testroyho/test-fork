@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "npm run archive",
-    "archive": "zip test.zip"
+    "archive": "zip -r test.zip *"
   },
   "engines": {
     "node": ">=8.9.3",
