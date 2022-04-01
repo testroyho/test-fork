@@ -1,0 +1,16 @@
+{
+  "name": "test",
+  "title": "test",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/roykho/test.git"
+  },
+  "scripts": {
+
+  },
+  "engines": {
+    "node": ">=8.9.3",
+    "npm": ">=5.5.1"
+  }
+}
