@@ -7,7 +7,8 @@
     "url": "https://github.com/roykho/test.git"
   },
   "scripts": {
-    "build": "npm run archive"
+    "build": "npm run archive",
+    "archive": "zip test.zip"
   },
   "engines": {
     "node": ">=8.9.3",
