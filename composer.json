@@ -1,0 +1,12 @@
+{
+    "name": "royho/test",
+    "authors": [
+        {
+            "name": "roykho",
+            "email": "roykho77@gmail.com"
+        }
+    ],
+    "require": {
+        "symfony/console": "^6.0"
+    }
+}

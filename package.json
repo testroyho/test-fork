@@ -7,11 +7,15 @@
     "url": "https://github.com/roykho/test.git"
   },
   "scripts": {
-    "build": "npm run archive",
+    "build": "composer install",
+    "build:zip": "npm run archive",
     "archive": "zip -r test.zip *"
   },
   "engines": {
     "node": ">=8.9.3",
     "npm": ">=5.5.1"
+  },
+  "dependencies": {
+    "luxon": "^2.3.1"
   }
 }
