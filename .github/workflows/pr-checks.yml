@@ -3,6 +3,7 @@ on: push
 jobs:
     build:
         name: Build app
+        id: build
         runs-on: ubuntu-latest
         steps:
             - name: Cancel Previous Runs
@@ -13,31 +14,23 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
-            - name: Cache node modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-node-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ~/node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
+            - name: Install NPM and install dependencies
+              run: npm install
 
-            - name: Cache composer modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-composer-modules
+            - name: Install Composer
+              run: composer install
+    after-build:
+        name: After build, build again
+        needs: [build]
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.7.0
               with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ~/vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
+                  access_token: ${{ github.token }}
+
+            - name: Checkout code
+              uses: actions/checkout@v2
 
             - name: Install NPM and install dependencies
               run: npm install
