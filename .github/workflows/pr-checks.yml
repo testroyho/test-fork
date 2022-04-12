@@ -56,6 +56,32 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
+            - name: Cache node modules
+              uses: actions/cache@v3
+              env:
+                cache-name: cache-node-modules
+              with:
+                # npm cache files are stored in `~/.npm` on Linux/macOS
+                path: ./node_modules
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-build-${{ env.cache-name }}-
+                  ${{ runner.os }}-build-
+                  ${{ runner.os }}-
+
+            - name: Cache composer modules
+              uses: actions/cache@v3
+              env:
+                cache-name: cache-composer-modules
+              with:
+                # npm cache files are stored in `~/.npm` on Linux/macOS
+                path: ./vendor
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-build-${{ env.cache-name }}-
+                  ${{ runner.os }}-build-
+                  ${{ runner.os }}-
+
             - name: Install NPM and install dependencies
               run: npm install
 
