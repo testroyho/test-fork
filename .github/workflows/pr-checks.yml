@@ -3,7 +3,6 @@ on: push
 jobs:
     build:
         name: Build app
-        id: build
         runs-on: ubuntu-latest
         steps:
             - name: Cancel Previous Runs
@@ -21,7 +20,6 @@ jobs:
               run: composer install
     after-build:
         name: After build, build again
-        needs: [build]
         runs-on: ubuntu-latest
         steps:
             - name: Cancel Previous Runs
