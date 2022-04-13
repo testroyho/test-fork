@@ -57,9 +57,9 @@ jobs:
       runs-on: ubuntu-latest
       steps:
         - name: find it
-        - uses: actions/download-artifact@v3
-          with:
-            name: woocommerce-artifact
+          uses: actions/download-artifact@v3
+            with:
+              name: woocommerce-artifact
 
         - name: Display structure of downloaded files
           run: ls -R
