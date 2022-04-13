@@ -23,13 +23,7 @@ jobs:
                 path: |
                   plugin/woocommerce/node_modules
                   plugin/woocommerce/vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-${{ hashFiles('plugins/woocommerce/package-lock.json') }}
-                  ${{ runner.os }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json') }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
 
             - name: Install NPM and install dependencies
               working-directory: plugins/woocommerce
@@ -57,14 +51,8 @@ jobs:
               # npm cache files are stored in `~/.npm` on Linux/macOS
               path: |
                 plugin/woocommerce/node_modules
-              key: ${{ runner.os }}-${{ hashFiles('plugins/woocommerce/package-lock.json') }}
-
-          - name: Cache modules
-            uses: actions/cache@v3
-            with:
-              # npm cache files are stored in `~/.npm` on Linux/macOS
-              path: |
                 plugin/woocommerce/vendor
-              key: ${{ runner.os }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
+              key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json') }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
+
           - name: find it
             run: ls -R
