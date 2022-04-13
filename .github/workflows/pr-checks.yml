@@ -52,10 +52,7 @@ jobs:
             uses: actions/checkout@v2
 
           - name: Cache modules
-            id: cache-modules
             uses: actions/cache@v3
-            env:
-              cache-name: cache-modules
             with:
               # npm cache files are stored in `~/.npm` on Linux/macOS
               path: |
@@ -63,10 +60,7 @@ jobs:
               key: ${{ runner.os }}-${{ hashFiles('plugins/woocommerce/package-lock.json') }}
 
           - name: Cache modules
-            id: cache-modules
             uses: actions/cache@v3
-            env:
-              cache-name: cache-modules
             with:
               # npm cache files are stored in `~/.npm` on Linux/macOS
               path: |
