@@ -59,12 +59,12 @@ jobs:
 
             - name: Install NPM and install dependencies
               working-directory: plugins/woocommerce
-              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              if: jobs.cache-deps.steps.cache-node-modules.outputs.cache-hit != 'true'
               run: npm install
 
             - name: Install Composer
               working-directory: plugins/woocommerce
-              if: steps.cache-composer-modules.outputs.cache-hit != 'true'
+              if: jobs.cache-deps.steps.cache-composer-modules.outputs.cache-hit != 'true'
               run: composer install
 
             - name: find it
