@@ -59,4 +59,4 @@ jobs:
 
             - name: Cat luxon file
               working-directory: plugins/woocommerce
-              run: cat package.json
+              run: ls
