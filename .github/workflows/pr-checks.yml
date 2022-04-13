@@ -52,17 +52,17 @@ jobs:
           with:
             name: woocommerce-artifact
             path: ~/tmp-woocommerce
-      find:
-        name: find download
-        runs-on: ubuntu-latest
-        steps:
-          - name: find it
-          - uses: actions/download-artifact@v3
-            with:
-              name: woocommerce-artifact
+    find:
+      name: find download
+      runs-on: ubuntu-latest
+      steps:
+        - name: find it
+        - uses: actions/download-artifact@v3
+          with:
+            name: woocommerce-artifact
 
-          - name: Display structure of downloaded files
-            run: ls -R
+        - name: Display structure of downloaded files
+          run: ls -R
 
     # cache-deps:
     #     name: Cache Deps
