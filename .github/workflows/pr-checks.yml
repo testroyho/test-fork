@@ -46,8 +46,8 @@ jobs:
             uses: actions/cache@v3
             with:
               path: |
-                plugin/woocommerce/node_modules
-                plugin/woocommerce/vendor
+                plugins/woocommerce/node_modules
+                plugins/woocommerce/vendor
               key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json') }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
 
           - name: find it

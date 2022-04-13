@@ -1,7 +1,7 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.10.31',
-        'version' => '1.10.31.0',
+        'pretty_version' => '1.10.32',
+        'version' => '1.10.32.0',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -26,8 +26,8 @@
             ),
         ),
         'royho/test' => array(
-            'pretty_version' => '1.10.31',
-            'version' => '1.10.31.0',
+            'pretty_version' => '1.10.32',
+            'version' => '1.10.32.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
