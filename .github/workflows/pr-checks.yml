@@ -23,7 +23,7 @@ jobs:
                 path: |
                   plugin/woocommerce/node_modules
                   plugin/woocommerce/vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/lockfiles') }}
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
                 restore-keys: |
                   ${{ runner.os }}-build-${{ env.cache-name }}-
                   ${{ runner.os }}-build-
