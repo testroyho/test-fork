@@ -20,7 +20,7 @@ jobs:
                 path: |
                   plugins/woocommerce/node_modules
                   plugins/woocommerce/vendor
-                key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json') }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
+                key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
 
             - name: Install NPM and install dependencies
               working-directory: plugins/woocommerce
@@ -48,7 +48,7 @@ jobs:
               path: |
                 plugins/woocommerce/node_modules
                 plugins/woocommerce/vendor
-              key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json') }}-${{ hashFiles('plugins/woocommerce/composer.lock') }}
+              key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
 
           - name: find it
             run: ls -R
