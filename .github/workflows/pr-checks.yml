@@ -58,8 +58,8 @@ jobs:
       steps:
         - name: find it
           uses: actions/download-artifact@v3
-            with:
-              name: woocommerce-artifact
+          with:
+            name: woocommerce-artifact
 
         - name: Display structure of downloaded files
           run: ls -R
