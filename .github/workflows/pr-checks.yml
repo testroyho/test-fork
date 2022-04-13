@@ -1,96 +1,67 @@
 name: Build
 on: push
 jobs:
-    checkout:
-      name: checking out
-      runs-on: ubuntu-latest
-      steps:
-        - name: checkout
-          uses: actions/checkout@v2
+    cache-deps:
+        name: Cache Deps
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.7.0
+              with:
+                  access_token: ${{ github.token }}
 
-        - name: Install NPM and install dependencies
-          working-directory: plugins/woocommerce
-          run: npm install
+            - name: Checkout code
+              uses: actions/checkout@v2
 
-        - name: Install Composer
-          working-directory: plugins/woocommerce
-          run: composer install
+            - name: Cache node modules
+              id: cache-node-modules
+              uses: actions/cache@v3
+              env:
+                cache-name: cache-node-modules
+              with:
+                # npm cache files are stored in `~/.npm` on Linux/macOS
+                path: plugin/woocommerce/node_modules
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
+                restore-keys: |
+                  ${{ runner.os }}-build-${{ env.cache-name }}-
+                  ${{ runner.os }}-build-
+                  ${{ runner.os }}-
 
-        - run: mkdir -p ~/tmp-woocommerce && cp -rp . ~/tmp-woocommerce
+            - name: Cache composer modules
+              id: cache-composer-modules
+              uses: actions/cache@v3
+              env:
+                cache-name: cache-composer-modules
+              with:
+                # npm cache files are stored in `~/.npm` on Linux/macOS
+                path: plugin/woocommerce/vendor
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
+                restore-keys: |
+                  ${{ runner.os }}-build-${{ env.cache-name }}-
+                  ${{ runner.os }}-build-
+                  ${{ runner.os }}-
 
-        - uses: actions/upload-artifact@v3
-          with:
-            name: woocommerce-artifact
-            path: ~/tmp-woocommerce
-    find:
-      name: find download
-      runs-on: ubuntu-latest
-      needs: [checkout]
-      steps:
-        - name: find it
-          uses: actions/download-artifact@v3
-          with:
-            name: woocommerce-artifact
+            - name: Install NPM and install dependencies
+              working-directory: plugins/woocommerce
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm install
 
-        - name: Display structure of downloaded files
-          run: ls -R
+            - name: Install Composer
+              working-directory: plugins/woocommerce
+              if: steps.cache-composer-modules.outputs.cache-hit != 'true'
+              run: composer install
+    run:
+        name: Run app
+        runs-on: ubuntu-latest
+        needs: [cache-deps]
+        steps:
+            - uses: actions/checkout@v2
 
-    # cache-deps:
-    #     name: Cache Deps
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Cancel Previous Runs
-    #           uses: styfle/cancel-workflow-action@0.7.0
-    #           with:
-    #               access_token: ${{ github.token }}
+            - name: Restore node_modules from cache
+              uses: actions/cache@v3
+              with:
+                path: plugin/woocommerce/node_modules
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
 
-    #         - name: Checkout code
-    #           uses: actions/checkout@v2
-
-    #         - name: Cache node modules
-    #           id: cache-node-modules
-    #           uses: actions/cache@v3
-    #           env:
-    #             cache-name: cache-node-modules
-    #           with:
-    #             # npm cache files are stored in `~/.npm` on Linux/macOS
-    #             path: plugin/woocommerce/node_modules
-    #             key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
-    #             restore-keys: |
-    #               ${{ runner.os }}-build-${{ env.cache-name }}-
-    #               ${{ runner.os }}-build-
-    #               ${{ runner.os }}-
-
-    #         - name: Cache composer modules
-    #           id: cache-composer-modules
-    #           uses: actions/cache@v3
-    #           env:
-    #             cache-name: cache-composer-modules
-    #           with:
-    #             # npm cache files are stored in `~/.npm` on Linux/macOS
-    #             path: plugin/woocommerce/vendor
-    #             key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
-    #             restore-keys: |
-    #               ${{ runner.os }}-build-${{ env.cache-name }}-
-    #               ${{ runner.os }}-build-
-    #               ${{ runner.os }}-
-
-    #         - name: Install NPM and install dependencies
-    #           working-directory: plugins/woocommerce
-    #           if: steps.cache-node-modules.outputs.cache-hit != 'true'
-    #           run: npm install
-
-    #         - name: Install Composer
-    #           working-directory: plugins/woocommerce
-    #           if: steps.cache-composer-modules.outputs.cache-hit != 'true'
-    #           run: composer install
-    # run:
-    #     name: Run app
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Checkout code
-    #           uses: actions/checkout@v2
-
-    #         - name: Cat luxon file
-    #           working-directory: plugins/woocommerce
-    #           run: ls
+            - name: find it
+              run: ls -R
