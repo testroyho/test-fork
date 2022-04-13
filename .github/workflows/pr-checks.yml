@@ -50,6 +50,10 @@ jobs:
               working-directory: plugins/woocommerce
               if: steps.cache-composer-modules.outputs.cache-hit != 'true'
               run: composer install
+
+            - name: check files
+              working-directory: plugins/woocommerce
+              run: ls ~/.npm
     run:
         name: Run app
         runs-on: ubuntu-latest
