@@ -55,5 +55,5 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Cat luxon file
-              working-directory: plugins/woocommerce/node_modules/luxon
+              working-directory: plugins/woocommerce
               run: cat package.json
