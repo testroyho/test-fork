@@ -20,8 +20,8 @@ jobs:
                 cache-name: cache-node-modules
               with:
                 # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ./node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package-lock.json') }}
+                path: plugin/woocommerce/node_modules
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
                 restore-keys: |
                   ${{ runner.os }}-build-${{ env.cache-name }}-
                   ${{ runner.os }}-build-
@@ -34,8 +34,8 @@ jobs:
                 cache-name: cache-composer-modules
               with:
                 # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ./vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./composer.lock') }}
+                path: plugin/woocommerce/vendor
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
                 restore-keys: |
                   ${{ runner.os }}-build-${{ env.cache-name }}-
                   ${{ runner.os }}-build-
