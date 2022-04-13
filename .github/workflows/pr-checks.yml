@@ -50,45 +50,10 @@ jobs:
               working-directory: plugins/woocommerce
               if: steps.cache-composer-modules.outputs.cache-hit != 'true'
               run: composer install
-    build:
-        name: Build app
+    run:
+        name: Run app
         runs-on: ubuntu-latest
         steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.7.0
-              with:
-                  access_token: ${{ github.token }}
-
-            - name: Checkout code
-              uses: actions/checkout@v2
-
-            - name: Install NPM and install dependencies
-              working-directory: plugins/woocommerce
-              if: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package-lock.json') }} != 'true'
-              run: npm install
-
-            - name: Install Composer
-              working-directory: plugins/woocommerce
-              if: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./composer.lock') }} != 'true'
-              run: composer install
-    after-build:
-        name: After build, build again
-        runs-on: ubuntu-latest
-        steps:
-            - name: Cancel Previous Runs
-              uses: styfle/cancel-workflow-action@0.7.0
-              with:
-                  access_token: ${{ github.token }}
-
-            - name: Checkout code
-              uses: actions/checkout@v2
-
-            - name: Install NPM and install dependencies
-              working-directory: plugins/woocommerce
-              if: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./package-lock.json') }} != 'true'
-              run: npm install
-
-            - name: Install Composer
-              working-directory: plugins/woocommerce
-              if: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('./composer.lock') }} != 'true'
-              run: composer install
+            - name: Cat luxon file
+              working-directory: plugins/woocommerce/node_modules/luxon
+              run: cat package.json
