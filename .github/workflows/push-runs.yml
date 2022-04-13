@@ -1,0 +1,20 @@
+name: Push Runs
+on: push
+jobs:
+    do-it:
+      name: Do it
+      runs-on: ubuntu-latest
+      steps:
+          - name: Checkout code
+            uses: actions/checkout@v2
+
+          - name: Cache modules
+            uses: actions/cache@v3
+            with:
+              path: |
+                plugins/woocommerce/node_modules
+                plugins/woocommerce/vendor
+              key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
+
+          - name: find it
+            run: ls -R
