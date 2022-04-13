@@ -1,8 +1,8 @@
 name: Build
 on: push
 jobs:
-    build:
-        name: Build app
+    cache-deps:
+        name: Cache Deps
         runs-on: ubuntu-latest
         steps:
             - name: Cancel Previous Runs
@@ -40,9 +40,30 @@ jobs:
                   ${{ runner.os }}-
 
             - name: Install NPM and install dependencies
+              if: steps.cache-node-modules.outputs.cache-hit != 'true'
               run: npm install
 
             - name: Install Composer
+              if: steps.cache-composer-modules.outputs.cache-hit != 'true'
+              run: composer install
+    build:
+        name: Build app
+        runs-on: ubuntu-latest
+        steps:
+            - name: Cancel Previous Runs
+              uses: styfle/cancel-workflow-action@0.7.0
+              with:
+                  access_token: ${{ github.token }}
+
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Install NPM and install dependencies
+              if: jobs.cache-deps.steps.cache-node-modules.outputs.cache-hit != 'true'
+              run: npm install
+
+            - name: Install Composer
+              if: jobs.cache-deps.steps.cache-composer-modules.outputs.cache-hit != 'true'
               run: composer install
     after-build:
         name: After build, build again
@@ -56,34 +77,10 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
-            - name: Cache node modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-node-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ./node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
-
-            - name: Cache composer modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-composer-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ./vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
-
             - name: Install NPM and install dependencies
+              if: jobs.cache-deps.steps.cache-node-modules.outputs.cache-hit != 'true'
               run: npm install
 
             - name: Install Composer
+              if: jobs.cache-deps.steps.cache-composer-modules.outputs.cache-hit != 'true'
               run: composer install
