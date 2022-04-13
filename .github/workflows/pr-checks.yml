@@ -57,8 +57,8 @@ jobs:
             with:
               # npm cache files are stored in `~/.npm` on Linux/macOS
               path: |
-                plugin/woocommerce/node_modules
                 plugin/woocommerce/vendor
+                plugin/woocommerce/node_modules
               key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
           - name: find it
             run: ls -R
