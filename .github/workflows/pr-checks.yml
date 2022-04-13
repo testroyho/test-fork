@@ -15,7 +15,6 @@ jobs:
 
             - name: Cache node modules
               id: cache-node-modules
-              working-directory: plugins/woocommerce
               uses: actions/cache@v3
               env:
                 cache-name: cache-node-modules
@@ -30,7 +29,6 @@ jobs:
 
             - name: Cache composer modules
               id: cache-composer-modules
-              working-directory: plugins/woocommerce
               uses: actions/cache@v3
               env:
                 cache-name: cache-composer-modules
