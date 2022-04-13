@@ -97,5 +97,7 @@ jobs:
 
             - name: find it
               run: ls -R
-    find:
-      run: ls ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
+
+            - name: find cache
+              run: ls ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
+              
