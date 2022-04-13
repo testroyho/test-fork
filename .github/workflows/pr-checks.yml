@@ -13,29 +13,17 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v2
 
-            - name: Cache node modules
-              id: cache-node-modules
+            - name: Cache modules
+              id: cache-modules
               uses: actions/cache@v3
               env:
-                cache-name: cache-node-modules
+                cache-name: cache-modules
               with:
                 # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: plugin/woocommerce/node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
-
-            - name: Cache composer modules
-              id: cache-composer-modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-composer-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: plugin/woocommerce/vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
+                path: |
+                  plugin/woocommerce/node_modules
+                  plugin/woocommerce/vendor
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/lockfiles') }}
                 restore-keys: |
                   ${{ runner.os }}-build-${{ env.cache-name }}-
                   ${{ runner.os }}-build-
@@ -43,61 +31,13 @@ jobs:
 
             - name: Install NPM and install dependencies
               working-directory: plugins/woocommerce
-              if: steps.cache-node-modules.outputs.cache-hit != 'true'
+              if: steps.cache-modules.outputs.cache-hit != 'true'
               run: npm install
 
             - name: Install Composer
               working-directory: plugins/woocommerce
-              if: steps.cache-composer-modules.outputs.cache-hit != 'true'
-              run: composer install
-    run:
-        name: Run app
-        runs-on: ubuntu-latest
-        needs: [cache-deps]
-        steps:
-            - uses: actions/checkout@v2
-
-            - name: Cache node modules
-              id: cache-node-modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-node-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: plugin/woocommerce/node_modules
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/package-lock.json') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
-
-            - name: Cache composer modules
-              id: cache-composer-modules
-              uses: actions/cache@v3
-              env:
-                cache-name: cache-composer-modules
-              with:
-                # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: plugin/woocommerce/vendor
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
-                restore-keys: |
-                  ${{ runner.os }}-build-${{ env.cache-name }}-
-                  ${{ runner.os }}-build-
-                  ${{ runner.os }}-
-
-            - name: Install NPM and install dependencies
-              working-directory: plugins/woocommerce
-              if: steps.cache-node-modules.outputs.cache-hit != 'true'
-              run: npm install
-
-            - name: Install Composer
-              working-directory: plugins/woocommerce
-              if: steps.cache-composer-modules.outputs.cache-hit != 'true'
+              if: steps.cache-modules.outputs.cache-hit != 'true'
               run: composer install
 
             - name: find it
               run: ls -R
-
-            - name: find cache
-              run: ls ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugin/woocommerce/composer.lock') }}
-              
