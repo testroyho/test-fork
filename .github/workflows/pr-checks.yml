@@ -20,8 +20,10 @@ jobs:
                 cache-name: cache-modules
               with:
                 # npm cache files are stored in `~/.npm` on Linux/macOS
-                path: ./
-                key: ${{ runner.os }}-build-${{ env.cache-name }}-woocommerce
+                path: |
+                  plugin/woocommerce/node_modules
+                  plugin/woocommerce/vendor
+                key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
                 restore-keys: |
                   ${{ runner.os }}-build-${{ env.cache-name }}-
                   ${{ runner.os }}-build-
@@ -44,6 +46,9 @@ jobs:
       runs-on: ubuntu-latest
       needs: [cache-deps]
       steps:
+          - name: Checkout code
+            uses: actions/checkout@v2
+
           - name: Cache modules
             id: cache-modules
             uses: actions/cache@v3
@@ -51,7 +56,9 @@ jobs:
               cache-name: cache-modules
             with:
               # npm cache files are stored in `~/.npm` on Linux/macOS
-              path: ./
-              key: ${{ runner.os }}-build-${{ env.cache-name }}-woocommerce
+              path: |
+                plugin/woocommerce/node_modules
+                plugin/woocommerce/vendor
+              key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
           - name: find it
             run: ls -R
