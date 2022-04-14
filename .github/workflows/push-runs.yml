@@ -16,5 +16,5 @@ jobs:
                 plugins/woocommerce/vendor
               key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
 
-          - name: find it
+          - name: find it second
             run: ls -R
