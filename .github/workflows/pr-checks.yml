@@ -4,6 +4,8 @@ jobs:
   runbuild:
     name: Run Build
     uses: ./.github/workflows/install-build.yml
+    with:
+      working_directory: plugins/woocommerce
 
   next:
     name: Next step
