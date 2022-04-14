@@ -1,11 +1,11 @@
 name: Build
 on: push
 jobs:
-    run-build:
-        uses: ./install-build.yml
+    runbuild:
+      uses: ./install-build.yml
 
-        - name: find it first
-          run: ls -R
+      - name: find it first
+        run: ls -R
     next:
       name: Next step
       runs-on: ubuntu-latest
