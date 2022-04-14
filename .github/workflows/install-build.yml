@@ -1,5 +1,6 @@
 name: Install and Build (Reusable)
 on:
+  workflow_call:
   jobs:
     cache-deps:
         name: Cache Deps
