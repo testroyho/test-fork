@@ -2,10 +2,13 @@ name: Build
 on: push
 jobs:
   runbuild:
-    uses: ./.github/workflows/install-build.yml
+    name: Run Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/install-build.yml
 
-    - name: find it first
-      run: ls -R
+      - name: find it first
+        run: ls -R
   next:
     name: Next step
     runs-on: ubuntu-latest
