@@ -5,6 +5,7 @@ on:
       working_directory:
         required: false
         default: ./
+        type: string
 
 jobs:
   cache-deps:
