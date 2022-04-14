@@ -2,7 +2,7 @@ name: Build
 on: push
 jobs:
   runbuild:
-    uses: ./install-build.yml
+    uses: ./.github/workflows/install-build.yml
 
     - name: find it first
       run: ls -R
