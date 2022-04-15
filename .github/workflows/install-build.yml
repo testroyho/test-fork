@@ -27,8 +27,9 @@ jobs:
             uses: actions/cache@v3
             with:
               path: |
-                ./
-              key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
+                **/vendor
+                **/node_modules
+              key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json', '**/composer.lock') }}
 
           - name: Install NPM and install dependencies
             working-directory: ${{ inputs.working_directory }}
@@ -37,5 +38,15 @@ jobs:
 
           - name: Install Composer
             working-directory: ${{ inputs.working_directory }}
+            if: steps.cache-modules.outputs.cache-hit != 'true'
+            run: composer install
+
+          - name: Install NPM and install dependencies
+            working-directory: ${{ inputs.working_directory }}/sub
+            if: steps.cache-modules.outputs.cache-hit != 'true'
+            run: npm install
+
+          - name: Install Composer
+            working-directory: ${{ inputs.working_directory }}/sub
             if: steps.cache-modules.outputs.cache-hit != 'true'
             run: composer install

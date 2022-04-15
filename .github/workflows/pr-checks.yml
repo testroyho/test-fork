@@ -16,8 +16,9 @@ jobs:
           uses: actions/cache@v3
           with:
             path: |
-              ./
-            key: ${{ runner.os }}-build-${{ hashFiles('plugins/woocommerce/package-lock.json', 'plugins/woocommerce/composer.lock') }}
+              **/node_modules
+              **/vendor
+            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json', '**/composer.lock') }}
 
         - name: find it
           run: ls -R
