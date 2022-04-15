@@ -9,7 +9,7 @@
     ],
     "require": {
         "symfony/console": "^6.0",
-        "pods-framework/pods": "^2.8.14"
+        "psr/container": "^2.0.2"
     },
     "config": {
         "allow-plugins": {
