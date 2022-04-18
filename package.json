@@ -1,0 +1,19 @@
+{
+  "name": "woocommerce-monorepo",
+  "title": "WooCommerce Monorepo",
+  "description": "Monorepo for the WooCommerce ecosystem",
+  "homepage": "https://woocommerce.com/",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/woocommerce/woocommerce.git"
+  },
+  "author": "Automattic",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/woocommerce/woocommerce/issues"
+  },
+  "devDependencies": {
+    "jest": "^27.3.1"
+  }
+}

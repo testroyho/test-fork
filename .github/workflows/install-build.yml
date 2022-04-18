@@ -29,24 +29,17 @@ jobs:
               path: |
                 **/vendor
                 **/node_modules
-              key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json', '**/composer.lock') }}
+              key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
 
           - name: Install NPM and install dependencies
             working-directory: ${{ inputs.working_directory }}
             if: steps.cache-modules.outputs.cache-hit != 'true'
-            run: npm install
+            run: pnpm install
 
           - name: Install Composer
             working-directory: ${{ inputs.working_directory }}
             if: steps.cache-modules.outputs.cache-hit != 'true'
             run: composer install
 
-          - name: Install NPM and install dependencies
-            working-directory: ${{ inputs.working_directory }}/sub
-            if: steps.cache-modules.outputs.cache-hit != 'true'
-            run: npm install
-
-          - name: Install Composer
-            working-directory: ${{ inputs.working_directory }}/sub
-            if: steps.cache-modules.outputs.cache-hit != 'true'
-            run: composer install
+          - name: list directory after install
+          run: ls -R

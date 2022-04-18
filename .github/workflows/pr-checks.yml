@@ -21,7 +21,7 @@ jobs:
             path: |
               **/node_modules
               **/vendor
-            key: ${{ runner.os }}-build-${{ hashFiles('**/package-lock.json', '**/composer.lock') }}
+            key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
 
         - name: find it
           run: ls -R
