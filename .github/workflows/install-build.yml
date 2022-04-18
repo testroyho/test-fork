@@ -12,8 +12,6 @@ jobs:
       name: Cache Deps
       runs-on: ubuntu-latest
       steps:
-          - name: what is the input
-            run: echo ${{ inputs.working_directory }}
           - name: Cancel Previous Runs
             uses: styfle/cancel-workflow-action@0.7.0
             with:
@@ -30,6 +28,9 @@ jobs:
                 **/vendor
                 **/node_modules
               key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
+
+          - name: Install PNPM
+            run: npm install pnpm -g
 
           - name: Install NPM and install dependencies
             working-directory: ${{ inputs.working_directory }}
