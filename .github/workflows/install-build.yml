@@ -12,35 +12,35 @@ jobs:
       name: Cache Deps
       runs-on: ubuntu-latest
       steps:
-          - name: Cancel Previous Runs
-            uses: styfle/cancel-workflow-action@0.7.0
-            with:
-                access_token: ${{ github.token }}
+        - name: Cancel Previous Runs
+          uses: styfle/cancel-workflow-action@0.7.0
+          with:
+              access_token: ${{ github.token }}
 
-          - name: Checkout code
-            uses: actions/checkout@v2
+        - name: Checkout code
+          uses: actions/checkout@v2
 
-          - name: Cache modules
-            id: cache-modules
-            uses: actions/cache@v3
-            with:
-              path: |
-                **/vendor
-                **/node_modules
-              key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
+        - name: Cache modules
+          id: cache-modules
+          uses: actions/cache@v3
+          with:
+            path: |
+              **/vendor
+              **/node_modules
+            key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
 
-          - name: Install PNPM
-            run: npm install pnpm -g
+        - name: Install PNPM
+          run: npm install pnpm -g
 
-          - name: Install NPM and install dependencies
-            working-directory: ${{ inputs.working_directory }}
-            if: steps.cache-modules.outputs.cache-hit != 'true'
-            run: pnpm install
+        - name: Install NPM and install dependencies
+          working-directory: ${{ inputs.working_directory }}
+          if: steps.cache-modules.outputs.cache-hit != 'true'
+          run: pnpm install
 
-          - name: Install Composer
-            working-directory: ${{ inputs.working_directory }}
-            if: steps.cache-modules.outputs.cache-hit != 'true'
-            run: composer install
+        - name: Install Composer
+          working-directory: ${{ inputs.working_directory }}
+          if: steps.cache-modules.outputs.cache-hit != 'true'
+          run: composer install
 
-          - name: list directory after install
-          run: ls -R
+        - name: list directory after install
+        run: ls -R
