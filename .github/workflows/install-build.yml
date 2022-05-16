@@ -41,7 +41,7 @@ jobs:
         run: composer install
 
       - name: Install Composer sub
-        working-directory: ${{ inputs.working_directory }}/plugins/woocommerce/sub
+        working-directory: ${{ inputs.working_directory }}/sub
         run: composer install
 
       - name: list directory after install
