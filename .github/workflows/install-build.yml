@@ -27,7 +27,7 @@ jobs:
           path: |
             ~/.pnpm-store
             ~/.cache/composer/files
-          key: ${{ runner.os }}-smoke-test-release-${{ secrets.WORKFLOW_CACHE }}-${{ hashFiles('**/composer.lock', '**/pnpm-lock.yaml') }}
+          key: ${{ runner.os }}-smoke-test-release-2-${{ hashFiles('**/composer.lock', '**/pnpm-lock.yaml') }}
 
       - name: Install PNPM
         run: npm install pnpm -g
