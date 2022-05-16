@@ -37,7 +37,7 @@ jobs:
         run: pnpm install
 
       - name: Install Composer
-        working-directory: ${{ inputs.working_directory }}
+        working-directory: ${{ inputs.working_directory }}/plugins/woocommerce
         run: composer install
 
       - name: Install Composer sub
