@@ -26,6 +26,7 @@ jobs:
         with:
           path: |
             ~/.pnpm-store
+            ~/.local/share/pnpm/store
             ~/.cache/composer/files
           key: ${{ runner.os }}-smoke-test-release-2-${{ hashFiles('**/composer.lock', '**/pnpm-lock.yaml') }}
 
