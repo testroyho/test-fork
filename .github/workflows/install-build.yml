@@ -18,29 +18,27 @@ jobs:
           access_token: ${{ github.token }}
 
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Cache modules
-        id: cache-modules
+      - name: Dependency caching
         uses: actions/cache@v3
+        id: cache-deps
         with:
           path: |
-            **/vendor
-            **/node_modules
-          key: ${{ runner.os }}-build-${{ hashFiles('**/pnpm-lock.yaml', '**/composer.lock') }}
+            ~/.pnpm-store
+            ~/.cache/composer/files
+          key: ${{ runner.os }}-smoke-test-release-${{ secrets.WORKFLOW_CACHE }}-${{ hashFiles('**/composer.lock', '**/pnpm-lock.yaml') }}
 
       - name: Install PNPM
         run: npm install pnpm -g
 
       - name: Install NPM and install dependencies
         working-directory: ${{ inputs.working_directory }}
-        if: steps.cache-modules.outputs.cache-hit != 'true'
         run: pnpm install
 
       - name: Install Composer
         working-directory: ${{ inputs.working_directory }}
-        if: steps.cache-modules.outputs.cache-hit != 'true'
         run: composer install
 
       - name: list directory after install
-        run: ls -R
+        run: ls -laR

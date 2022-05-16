@@ -1,0 +1,17 @@
+{
+    "name": "royho/sub",
+    "autoload": {
+        "psr-4": {
+            "Royho\\Sub\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "roykho",
+            "email": "roykho77@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^3.0"
+    }
+}
