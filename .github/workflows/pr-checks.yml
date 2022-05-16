@@ -1,17 +1,15 @@
 name: Build
 on: push
 jobs:
+  next:
+    name: Next step
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
   runbuild:
     name: Run Build
     uses: ./.github/workflows/install-build.yml
     # with:
     #   working_directory: plugins/woocommerce
-
-  # next:
-  #   name: Next step
-  #   runs-on: ubuntu-latest
-  #   needs: [runbuild]
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
