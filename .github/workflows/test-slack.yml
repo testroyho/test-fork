@@ -13,7 +13,7 @@ jobs:
         with:
           script: |
             async function run() {
-              const version = await github.rest.repos.getLatestRelease({
+              let version = await github.rest.repos.getLatestRelease({
                 owner: 'woocommerce',
                 repo: 'woocommerce'
               });
