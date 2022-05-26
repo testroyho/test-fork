@@ -12,14 +12,19 @@ jobs:
         id: gh
         with:
           script: |
-            function run() {
-              let version = github.rest.repos.getLatestRelease({
+            async function run() {
+              return await github.rest.repos.getLatestRelease({
                 owner: 'woocommerce',
                 repo: 'woocommerce'
               });
-              console.log(version);
             }
-            run();
+            $response = run();
+            console.log(version);
+            version = parseFloat( version.data.tag_name ) + 0.1;
+            version = version.toPrecision( 2 );
+            let next_version = parseFloat( version.data.tag_name ) + 0.2;
+            next_version = version.toPrecision( 2 );
+            return { "version": version, "next_version": next_version };
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
         id: notify
