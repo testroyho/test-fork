@@ -7,10 +7,20 @@ jobs:
   slack:
     runs-on: ubuntu-20.04
     steps:
+      - name: GH
+        uses: actions/github-script@v6
+        id: gh
+        with:
+          script: |
+            return github.rest.repos.getLatestRelease({
+              woocommerce,
+              woocommerce,
+            });
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
         id: notify
         with:
          slack-bot-user-oauth-access-token: ${{ secrets.CODE_FREEZE_BOT_TOKEN }}
          slack-channel: GQYA0M7JQ
-         slack-text: 'Testing Code Freeze Notifications'
+         slack-text: ":warning-8c:   ${{steps.gh.outputs.result}} Code Freeze  :ice_cube:
+The automation to cut the release branch for 6.6 has run. Any PRs that were not already merged will be a part of 6.7 by default. If you have something that needs to make 6.6 that hasn't yet been merged, please see the fieldguide page for the code freeze."
