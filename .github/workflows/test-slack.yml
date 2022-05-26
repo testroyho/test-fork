@@ -12,8 +12,8 @@ jobs:
         id: gh
         with:
           script: |
-            async function run() {
-              let version = await github.rest.repos.getLatestRelease({
+            function run() {
+              let version = github.rest.repos.getLatestRelease({
                 owner: 'woocommerce',
                 repo: 'woocommerce'
               });
