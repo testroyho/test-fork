@@ -22,7 +22,7 @@ console.log(version);
               # version = version.toPrecision( 2 );
               # let next_version = parseFloat( version.data.tag_name ) + 0.2;
               # next_version = version.toPrecision( 2 );
-              return { "version": version, "next_version": next_version };
+              #return { "version": version, "next_version": next_version };
             }
             run();
       - name: Slack
