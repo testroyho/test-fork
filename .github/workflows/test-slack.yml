@@ -1,4 +1,4 @@
-name: Build
+name: Slack
 on:
   push:
     branches: ["trunk", "main"]
