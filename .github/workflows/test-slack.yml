@@ -15,8 +15,9 @@ jobs:
             const version = JSON.parse( github.rest.repos.getLatestRelease({
               owner: 'woocommerce',
               repo: 'woocommerce'
-            }) ).tag_name;
-            return version;
+            }) );
+            console.log(version);
+            return 'HELLO';
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
         id: notify
