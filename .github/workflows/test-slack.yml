@@ -5,10 +5,12 @@ on:
   workflow_dispatch:
 jobs:
   slack:
-    - name: Send message to Slack API
-      uses: archive/github-actions-slack@v2.0.0
-      id: notify
-      with:
-        slack-bot-user-oauth-access-token: ${{ secrets.CODE_FREEZE_BOT_TOKEN }}
-        slack-channel: GQYA0M7JQ
-        slack-text: 'Testing Code Freeze Notifications'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Slack
+        uses: archive/github-actions-slack@v2.0.0
+        id: notify
+        with:
+         slack-bot-user-oauth-access-token: ${{ secrets.CODE_FREEZE_BOT_TOKEN }}
+         slack-channel: GQYA0M7JQ
+         slack-text: 'Testing Code Freeze Notifications'
