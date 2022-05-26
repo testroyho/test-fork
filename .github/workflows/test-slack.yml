@@ -12,7 +12,7 @@ jobs:
         id: gh
         with:
           script: |
-            const version = github.rest.repos.getLatestRelease({
+            const version = await github.rest.repos.getLatestRelease({
               owner: 'woocommerce',
               repo: 'woocommerce'
             });
