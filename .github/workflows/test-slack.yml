@@ -18,7 +18,7 @@ jobs:
                 repo: 'woocommerce'
               });
             }
-            let version = run();
+            let version = await run();
             console.log(version);
             version = parseFloat( version.data.tag_name ) + 0.1;
             version = version.toPrecision( 2 );
