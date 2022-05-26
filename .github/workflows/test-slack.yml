@@ -12,11 +12,11 @@ jobs:
         id: gh
         with:
           script: |
-            const version = JSON.parse( github.rest.repos.getLatestRelease({
+            const version = github.rest.repos.getLatestRelease({
               owner: 'woocommerce',
               repo: 'woocommerce'
-            }) );
-            console.log(version);
+            });
+            console.log(version.tag_name);
             return 'HELLO';
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
