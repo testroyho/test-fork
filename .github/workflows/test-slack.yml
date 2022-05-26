@@ -29,4 +29,4 @@ jobs:
          slack-bot-user-oauth-access-token: ${{ secrets.CODE_FREEZE_BOT_TOKEN }}
          slack-channel: GQYA0M7JQ
          slack-text: ":warning-8c: ${{steps.gh.outputs.result.version}} Code Freeze :ice_cube:
-The automation to cut the release branch for ${{steps.gh.outputs.result.version}} has run. Any PRs that were not already merged will be a part of ${{steps.gh.outputs.result.next_version}} by default. If you have something that needs to make ${{steps.gh.outputs.result.version}} that hasn't yet been merged, please see the fieldguide page for the code freeze: https://fieldguide.automattic.com/code-freeze-for-woocommerce-core-release/."
+The automation to cut the release branch for ${{steps.gh.outputs.result}} has run. Any PRs that were not already merged will be a part of ${{steps.gh.outputs.result.next_version}} by default. If you have something that needs to make ${{steps.gh.outputs.result.version}} that hasn't yet been merged, please see the fieldguide page for the code freeze: https://fieldguide.automattic.com/code-freeze-for-woocommerce-core-release/."
