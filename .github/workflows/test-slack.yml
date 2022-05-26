@@ -16,7 +16,7 @@ jobs:
               owner: 'woocommerce',
               repo: 'woocommerce'
             });
-            console.log(version.tag_name);
+            console.log(version);
             return 'HELLO';
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
