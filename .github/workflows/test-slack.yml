@@ -36,7 +36,7 @@ jobs:
 
               return version;
       - name: Slack
-        uses: archive/github-actions-slack@v2
+        uses: archive/github-actions-slack@v2.0.0
         id: notify
         with:
          slack-bot-user-oauth-access-token: ${{ secrets.CODE_FREEZE_BOT_TOKEN }}
