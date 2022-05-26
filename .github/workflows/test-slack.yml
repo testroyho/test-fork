@@ -13,8 +13,8 @@ jobs:
         with:
           script: |
             return github.rest.repos.getLatestRelease({
-              woocommerce,
-              woocommerce,
+              'woocommerce',
+              'woocommerce',
             });
       - name: Slack
         uses: archive/github-actions-slack@v2.0.0
