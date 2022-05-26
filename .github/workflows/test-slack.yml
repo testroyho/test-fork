@@ -19,7 +19,7 @@ jobs:
               });
             }
             run().then( (version) => {
-              console.log(version);
+              console.log(typeof version);
               version = parseFloat( version.data.tag_name ) + 0.1;
               version = version.toPrecision( 2 );
               let next_version = parseFloat( version.data.tag_name ) + 0.2;
