@@ -61,4 +61,11 @@ jobs:
               body: body
             })
 
-            console.log( 'pr', pr );
+            const prCreated = await github.rest.pulls.requested_reviewers({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.data.number,
+              reviewers: ["roykho"]
+            })
+
+            console.log( 'pr num', pr.data.number ); // pr.data.number
