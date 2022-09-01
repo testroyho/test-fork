@@ -25,9 +25,12 @@ jobs:
       - name: Switch to release branch
         run: git checkout ${{ steps.tag.outputs.tag }}
 
-      - name: Output changelog
+      - uses: pCYSl5EDgo/cat@master
         id: changelog
-        run: echo ::set-output name=changelog::$(cat changelog.txt)
+        with:
+          path: changelog.txt
 
       - name: Check var
-        run: echo ${{ steps.changelog.outputs.changelog }}
+        run: echo $CHANGELOG
+        env:
+          CHANGELOG: ${{ steps.changelog.outputs.changelog }}
