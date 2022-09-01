@@ -1,0 +1,14 @@
+name: Run post release processes
+on: 
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  update-changelog-in-trunk:
+    name: Update changelog in trunk
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+      - name: Switch to release branch
+        run: echo ${{ toJSON( github.event ) }}
