@@ -26,4 +26,4 @@ jobs:
         run: git checkout ${{ steps.tag.outputs.tag }}
 
       - name: Check var
-        run: ls ./ && ls ../
+        run: ls ./ && ls ../../
