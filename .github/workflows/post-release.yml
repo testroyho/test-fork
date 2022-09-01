@@ -27,7 +27,7 @@ jobs:
 
       - name: Output changelog
         id: changelog
-        run: echo "::set-output name=changelog::$(cat changelog.txt)"
+        run: echo ::set-output name=changelog::$(cat changelog.txt)
 
       - name: Check var
         run: echo ${{ steps.changelog.outputs.changelog }}
