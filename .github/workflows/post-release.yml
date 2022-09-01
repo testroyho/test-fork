@@ -10,5 +10,15 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v3
+      - name: Get tag name
+        id: tag
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const tag = ${{ toJSON( github.event.release.tag_name ) }}
+
+            console.log( `::set-output name=tag::${ tag }` )
       - name: Switch to release branch
-        run: echo ${{ toJSON( github.event.release.tag_name ) }}
+        run: git checkout ${{ steps.tag.outputs.tag }}
+      - name: check branch
+        run: git rev-parse --abbrev-ref HEAD
