@@ -61,7 +61,7 @@ jobs:
               body: body
             })
 
-            const prCreated = await github.rest.pulls.requested_reviewers({
+            const prCreated = await github.rest.pulls.createReviewRequest({
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: pr.data.number,
