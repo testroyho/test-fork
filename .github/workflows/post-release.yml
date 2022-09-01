@@ -61,6 +61,7 @@ jobs:
               body: body
             })
 
+            console.log( 'github', github.rest.pulls );
             const prCreated = await github.rest.pulls.createReviewRequest({
               owner: context.repo.owner,
               repo: context.repo.repo,
