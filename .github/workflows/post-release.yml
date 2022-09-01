@@ -1,7 +1,7 @@
 name: Run post release processes
 on: 
   release:
-    types: [published, released]
+    types: [released]
   workflow_dispatch:
 
 jobs:
