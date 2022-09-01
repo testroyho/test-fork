@@ -45,3 +45,18 @@ jobs:
 
       - name: Push branch up
         run: git push origin update/changelog-from-release-${{ github.event.release.tag_name }}
+
+      - name: Create the PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const body = "This PR updates the changelog.txt based on the latest release: ${{ github.event.release.tag_name }}"
+
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              title: "Update changelog.txt from release ${{ github.event.release.tag_name }}",
+              head: "update/changelog-from-release-${{ github.event.release.tag_name }}",
+              base: "main",
+              body: body
+            })
