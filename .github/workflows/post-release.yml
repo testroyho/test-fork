@@ -26,7 +26,7 @@ jobs:
             console.log( `::set-output name=tag::release/${ tag.substring( 0, 3 ) }` )
 
       - name: "debug: check event"
-        run: console.log( ${{ toJSON( github.event ) }} )
+        run: echo ${{ toJSON( github.event ) }}
 
       - name: Git fetch trunk branch
         run: git fetch origin main
