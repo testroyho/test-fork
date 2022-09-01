@@ -17,7 +17,7 @@ jobs:
           script: |
             const tag = ${{ toJSON( github.event.release.tag_name ) }}
 
-            console.log( `::set-output name=tag::${ tag }` )
+            console.log( `::set-output name=tag::release/${ tag.substring( 0, 2 ) }` )
       - name: Switch to release branch
         run: git checkout ${{ steps.tag.outputs.tag }}
       - name: check branch
