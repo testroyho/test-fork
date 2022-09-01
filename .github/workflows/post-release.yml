@@ -28,5 +28,14 @@ jobs:
       - name: Copy changelog.txt to vm root
         run: cp changelog.txt ../../changelog.txt
 
-      - name: Check copied changelog
-        run: cat ../../changelog.txt
+      - name: Switch to trunk branch
+        run: git checkout trunk
+      
+      - name: Create a new branch based on trunk
+        run: git checkout -b update/changelog-from-release
+
+      - name: Copy saved changelog.txt to monorepo
+        run: cp ../../changelog.txt ./changelog.txt
+
+      - name: check new changelog
+        run: cat ./changelog.txt
