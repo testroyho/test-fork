@@ -65,7 +65,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               pull_number: pr.data.number,
-              reviewers: ["roykho"]
+              reviewers: ["${{ github.event.release.author.login }}"]
             })
 
             console.log( 'pr num', pr.data.number ); // pr.data.number github.event.release.author.login
