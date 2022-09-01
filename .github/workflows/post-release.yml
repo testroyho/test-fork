@@ -29,13 +29,13 @@ jobs:
         run: git checkout main
       
       - name: Create a new branch based on trunk
-        run: git checkout -b update/changelog-from-release-${{ toJSON( github.event.release.tag_name ) }}
+        run: git checkout -b update/changelog-from-release-${{ github.event.release.tag_name }}
 
       - name: Copy saved changelog.txt to monorepo
         run: cp ../../changelog.txt ./changelog.txt
 
       - name: Commit changes
-        run: git commit -am `Update changelog.txt from release ${{ toJSON( github.event.release.tag_name ) }}`
+        run: git commit -am `Update changelog.txt from release ${{ github.event.release.tag_name }}`
 
       - name: Push branch up
-        run: git push origin update/changelog-from-release-${{ toJSON( github.event.release.tag_name ) }}
+        run: git push origin update/changelog-from-release-${{ github.event.release.tag_name }}
