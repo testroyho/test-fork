@@ -26,10 +26,8 @@ jobs:
         run: git checkout ${{ steps.tag.outputs.tag }}
 
       - name: Output changelog
-        run: cat changelog.txt
-
-      - name: Copy changelog.txt contents to env variable
-        run: export CHANGELOG=`cat changelog.txt`
+        id: changelog
+        run: echo "::set-output name=changelog::$(cat changelog.txt)"
 
       - name: Check var
-        run: echo $CHANGELOG
+        run: echo ${{ steps.changelog.outputs.changelog }}
