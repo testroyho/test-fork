@@ -60,3 +60,5 @@ jobs:
               base: "main",
               body: body
             })
+
+            console.log( 'pr', pr );
