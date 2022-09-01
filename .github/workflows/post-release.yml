@@ -25,5 +25,8 @@ jobs:
       - name: Switch to release branch
         run: git checkout ${{ steps.tag.outputs.tag }}
 
-      - name: Check var
-        run: ls ./ && ls ../../
+      - name: Copy changelog.txt to vm root
+        run: cp changelog.txt ../../changelog.txt
+
+      - name: Check copied changelog
+        run: echo ../../changelog.txt
