@@ -26,16 +26,13 @@ jobs:
         run: cat changelog.txt
 
       - name: Git fetch the release branch
-        run: git fetch origin ${{ steps.tag.outputs.tag }}
-
-      - name: Switch to release branch
-        run: git checkout ${{ steps.tag.outputs.tag }}
+        run: git fetch origin main
 
       - name: Copy changelog.txt to vm root
         run: cp changelog.txt ../../changelog.txt
 
       - name: Switch to trunk branch
-        run: git checkout -
+        run: git checkout main
       
       - name: Create a new branch based on trunk
         run: git checkout -b update/changelog-from-release
