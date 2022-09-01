@@ -25,9 +25,6 @@ jobs:
 
             console.log( `::set-output name=tag::release/${ tag.substring( 0, 3 ) }` )
 
-      - name: "debug: check event"
-        run: echo ${{ toJSON( github.event ) }}
-
       - name: Git fetch trunk branch
         run: git fetch origin main
 
@@ -72,4 +69,4 @@ jobs:
               reviewers: ["roykho"]
             })
 
-            console.log( 'pr num', pr.data.number ); // pr.data.number
+            console.log( 'pr num', pr.data.number ); // pr.data.number github.event.release.author.login
