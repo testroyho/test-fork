@@ -19,6 +19,9 @@ jobs:
 
             console.log( `::set-output name=tag::release/${ tag.substring( 0, 3 ) }` )
 
+      - name: check origin branch
+        run: git rev-parse --abbrev-ref HEAD
+
       - name: Git fetch the release branch
         run: git fetch origin ${{ steps.tag.outputs.tag }}
 
