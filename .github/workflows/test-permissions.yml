@@ -13,3 +13,8 @@ jobs:
       - uses: pnpm/action-setup@v2
         with:
           version: 6.0.2
+
+  checkout:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
