@@ -20,3 +20,10 @@ jobs:
       contents: read
     steps:
       - uses: actions/checkout@v3
+
+      - name: Upload the zip file as an artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: woocommerce
+          path: zipfile
+          retention-days: 7
