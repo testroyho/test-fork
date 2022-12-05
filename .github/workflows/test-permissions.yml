@@ -17,12 +17,9 @@ jobs:
   checkout:
     runs-on: ubuntu-20.04
     steps:
-      - name: cache
-        run: mkdir caching && cd caching && touch file.log
-
-      - name: Cache Composer Dependencies
-        uses: actions/cache@fd5de65bc895cf536527842281bea11763fefd77
+      - name: Setup Node
+        uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93
         with:
-          path: caching
-          key: ${{ runner.os }}
-          restore-keys: ${{ runner.os }}-composer-
+          cache: pnpm
+          registry-url: 'https://registry.npmjs.org'
+          
