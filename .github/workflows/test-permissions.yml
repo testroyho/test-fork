@@ -6,12 +6,24 @@ on:
   - pull_request
 
 jobs:
+  install:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 6.0.2
+
   checkout:
     runs-on: ubuntu-20.04
     steps:
-      - name: Setup PHP
-        uses: shivammathur/setup-php@e04e1d97f0c0481c6e1ba40f8a538454fe5d7709
+      - name: build
+        run: touch hello.log
+
+      - name: Upload the zip file as an artifact
+        uses: actions/upload-artifact@v3
         with:
-          php-version: 8.0
-          coverage: none
-          tools: phpcs, sirbrillig/phpcs-changed
+          name: woocommerce
+          path: ./
+          retention-days: 7
+          
