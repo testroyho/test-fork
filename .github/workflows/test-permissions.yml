@@ -18,11 +18,11 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: cache
-        run: mkdir caching
+        run: mkdir caching && cd caching && touch file.log
 
       - name: Cache Composer Dependencies
         uses: actions/cache@fd5de65bc895cf536527842281bea11763fefd77
         with:
-          path: ~/caching
+          path: caching
           key: ${{ runner.os }}
           restore-keys: ${{ runner.os }}-composer-
