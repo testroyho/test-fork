@@ -9,11 +9,9 @@ jobs:
   checkout:
     runs-on: ubuntu-20.04
     steps:
-      - uses: pnpm/action-setup@v2
+      - name: Setup PHP
+        uses: shivammathur/setup-php@e04e1d97f0c0481c6e1ba40f8a538454fe5d7709
         with:
-          version: 6.0.2
-
-      - name: Setup Node
-        uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93
-        with:
-          registry-url: 'https://registry.npmjs.org'
+          php-version: ${{ inputs.php-version }}
+          coverage: none
+          tools: phpcs, sirbrillig/phpcs-changed
