@@ -6,20 +6,15 @@ on:
   - pull_request
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-
+  checkout:
+    runs-on: ubuntu-20.04
     steps:
       - uses: pnpm/action-setup@v2
         with:
           version: 6.0.2
 
-  checkout:
-    runs-on: ubuntu-20.04
-    steps:
       - name: Setup Node
         uses: actions/setup-node@2fddd8803e2f5c9604345a0b591c3020ee971a93
         with:
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
-          
