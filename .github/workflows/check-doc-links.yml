@@ -17,3 +17,4 @@ jobs:
                   use-quiet-mode: 'no'
                   use-verbose-mode: 'yes'
                   config-file: '.github/workflows/check-doc-links-config.json'
+                  folder-path: './docs'
