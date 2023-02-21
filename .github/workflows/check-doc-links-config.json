@@ -11,8 +11,5 @@
 				"Accept-Encoding": "zstd, br, gzip, deflate"
 			}
 		}
-	],
-	"timeout": "5s",
-	"retryCount": 2,
-	"fallbackRetryDelay": "5s"
+	]
 }
