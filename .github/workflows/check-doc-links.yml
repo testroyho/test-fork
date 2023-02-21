@@ -18,3 +18,4 @@ jobs:
                   use-verbose-mode: 'yes'
                   folder-path: './'
                   max-depth: 1
+                  config-file: '.github/workflows/check-doc-links-config.json'
