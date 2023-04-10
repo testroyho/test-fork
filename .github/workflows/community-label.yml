@@ -14,7 +14,7 @@ permissions: {}
 
 jobs:
     verify:
-        name: Verify
+        name: Verify and add label
         runs-on: ubuntu-20.04
         permissions:
             contents: read

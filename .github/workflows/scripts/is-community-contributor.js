@@ -27,6 +27,7 @@ const isCommunityContributor = async ( owner, repo, username ) => {
 		return permission === 'read' || permission === 'none';
 	}
 
+    console.log( 'Not a community contributor!' );
 	return false;
 };
 
